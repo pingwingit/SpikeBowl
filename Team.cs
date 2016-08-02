@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpikeBowl
+namespace SpikeBowl.Engine
 {
-    public class Class1
+    public class Team
     {
+        public List<Player> players { get; set; }
     }
 }
