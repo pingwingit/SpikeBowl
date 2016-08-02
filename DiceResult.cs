@@ -8,10 +8,10 @@ namespace SpikeBowl.Engine
 {
     class DiceResult
     {
-        int total;
-        List<int> individualResults;
-        bool isDouble;
-        RollTypes rollType;
+        public int total;
+        public List<int> individualResults;
+        public bool isDouble;
+        public RollTypes rollType;
 
         public DiceResult(List<int> individualResults, RollTypes rollType)
         {
