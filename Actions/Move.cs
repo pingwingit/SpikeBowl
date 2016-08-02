@@ -37,7 +37,10 @@ namespace SpikeBowl.Engine.Actions
             else
             {
                 //tackle zone on player so must make dodge roll
+                int target = GameManager.engine.GetAGRollTarget(player.AG);
 
+                int modifier = 1;   //dodge has +1 modifier to base AG roll
+                modifier -= opponentsWithTackleZoneOnDestination.Count; //-1 modifier for every opposing tackle zone on destination square
 
 
                 throw new NotImplementedException("need to implement dodging");

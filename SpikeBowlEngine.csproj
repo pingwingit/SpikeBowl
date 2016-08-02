@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="Actions\Move.cs" />
     <Compile Include="Ball.cs" />
+    <Compile Include="DiceResult.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="Interfaces\DiceManager.cs" />
     <Compile Include="Interfaces\SBClient.cs" />
     <Compile Include="Interfaces\SBAction.cs" />
     <Compile Include="Player.cs" />

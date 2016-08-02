@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SpikeBowl.Engine.Interfaces
 {
-    interface SBClient
+    interface DiceManager
     {
-        bool RerollRequest(int diceResult, int target, RerollRequestMessages message);
-
+        DiceResult RollDice(RollTypes rollType);
     }
 }

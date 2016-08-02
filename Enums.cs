@@ -39,4 +39,23 @@ namespace SpikeBowl.Engine
         HOME,
         AWAY
     }
+
+    public enum RerollRequestMessages
+    {
+        DODGE_FAILED,
+        PASS_INACCURATE,
+        PASS_FUMBLED,
+        CATCH_FAILED,
+        PICKUP_FAILED
+    }
+
+    public enum RollTypes
+    {
+        D6,
+        _2D6,
+        D3,
+        D8,
+        D16,
+        D68
+    }
 }
