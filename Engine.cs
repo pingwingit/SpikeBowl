@@ -36,5 +36,28 @@ namespace SpikeBowl.Engine
                 target = 2;
             return target;
         }
+
+        public void InitialiseTurn(Team activeTeam)
+        {
+            //set counts for number of blitzs, passes etc. allowed this turn
+            activeTeam.BlitzRemaining = 1;
+            activeTeam.PassesRemaining = 1;
+            activeTeam.HandOffsRemaining = 1;
+            activeTeam.FoulsRemaining = 1;
+
+            if ( activeTeam.RerollsRemainingThisHalf > 0)
+                activeTeam.RerollsRemaining = 1;
+            else
+                activeTeam.RerollsRemaining = 0;
+
+
+            //set movement allowance on players etc.
+            foreach(Player p in activeTeam.players)
+            {
+                p.movesRemaining = p.MV;
+                p.stunnedThisTurn = false;
+            }
+
+        }
     }
 }
