@@ -8,6 +8,8 @@ namespace SpikeBowl.Engine
 {
     public interface IAction
     {
+        ActionResults actionResult { get; set; }
+
         ActionResults TryAction();
 
         bool ValidateAction();

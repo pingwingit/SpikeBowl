@@ -9,6 +9,8 @@ namespace SpikeBowl.Engine.Actions
 {
     class Move : IAction
     {
+        public ActionResults actionResult { get; set; }
+
         Player player;
         Point destination;
 
@@ -50,6 +52,7 @@ namespace SpikeBowl.Engine.Actions
                 result = ActionResults.TURNOVER;
             }
 
+            actionResult = result;
             return result;            
         }
 
