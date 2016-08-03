@@ -23,7 +23,8 @@ namespace SpikeBowl.Engine
         STUNNED,
         KO,
         INJURED,
-        DEAD
+        DEAD,
+        RESERVE
     } 
 
     public enum ActionResults

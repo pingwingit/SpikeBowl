@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpikeBowl.Engine.Interfaces
 {
-    interface SBClient
+    public interface IClient
     {
         bool RerollRequest(int diceResult, int target, RerollRequestMessages message);
 

@@ -48,9 +48,9 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Stubs\DiceManagerStub.cs" />
     <Compile Include="GameManager.cs" />
-    <Compile Include="Interfaces\DiceManager.cs" />
-    <Compile Include="Interfaces\SBClient.cs" />
-    <Compile Include="Interfaces\SBAction.cs" />
+    <Compile Include="Interfaces\IDiceManager.cs" />
+    <Compile Include="Interfaces\IClient.cs" />
+    <Compile Include="Interfaces\IAction.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

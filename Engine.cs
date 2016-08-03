@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SpikeBowl.Engine.Interfaces;
 
 namespace SpikeBowl.Engine
 {
     public class Engine
     {
+        public Stack<IAction> actionStack { get; set; }
+
+        public IClient homeClient { get; set; }
+        public IClient awayClient { get; set; }
+
         public Team homeTeam { get; set; }
         public Team awayTeam { get; set; }
 
@@ -21,11 +27,12 @@ namespace SpikeBowl.Engine
             {
                 opposingPlayers = awayTeam.players;
             }
+            else
             {
                 opposingPlayers = homeTeam.players;
             }
-
-            var resultPlayers = opposingPlayers.Where(player => player.boardPosition.GetSquaredDistance(p) <= 2);
+            
+            var resultPlayers = opposingPlayers.Where(player => player.boardPosition.GetSquaredDistance(p) <= 2 && player.hasTackleZone);
             return resultPlayers.ToList();
         }
         
@@ -55,6 +62,7 @@ namespace SpikeBowl.Engine
             foreach(Player p in activeTeam.players)
             {
                 p.movesRemaining = p.MV;
+                p.GFIsRemaining = p.GFIs;
                 p.stunnedThisTurn = false;
             }
 

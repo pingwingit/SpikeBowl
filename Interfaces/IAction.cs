@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace SpikeBowl.Engine
 {
-    interface DiceManager
+    public interface IAction
     {
-        DiceResult RollDice(RollTypes rollType);
-    }
+        ActionResults TryAction();
+
+        bool ValidateAction();
+    }    
 }

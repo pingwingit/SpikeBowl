@@ -7,7 +7,7 @@ using SpikeBowl.Engine.Interfaces;
 
 namespace SpikeBowl.Engine.Actions
 {
-    class Move : SBAction
+    class Move : IAction
     {
         Player player;
         Point destination;
@@ -28,6 +28,9 @@ namespace SpikeBowl.Engine.Actions
             if (opponentsWithTackleZoneOnPlayer.Count == 0)
             {
                 //no tackle zones on player so move automatically succeeds
+
+                //TODO - change this to take into account GFIs
+
                 player.movesRemaining--;
                 if (player.movesRemaining == 0)
                     result = ActionResults.OK_STOP;
