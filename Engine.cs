@@ -33,7 +33,7 @@ namespace SpikeBowl.Engine
             while ( result == ActionResults.OK_CONTINUE && actionQueue.Count > 0 )
             {
                 IAction action = actionQueue.Dequeue();
-                action.TryAction();
+                result = action.TryAction();
             }
 
             return result;

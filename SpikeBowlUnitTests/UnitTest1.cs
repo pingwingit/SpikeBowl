@@ -33,6 +33,7 @@ namespace SpikeBowlUnitTests
             ActionResults ar = e.ProcessActionQueue();
 
             //Assert.IsTrue(ar == ActionResults.TURNOVER);
+            Assert.AreEqual(ActionResults.TURNOVER, ar);
             Assert.AreEqual(4,h1.boardPosition.x);
         }
     }
