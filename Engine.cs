@@ -9,7 +9,9 @@ namespace SpikeBowl.Engine
 {
     public class Engine
     {
-        public Stack<IAction> actionStack { get; set; }
+        public Queue<IAction> actionQueue { get; set; }
+
+        public IDiceManager diceManager { get; set; }
 
         public IClient homeClient { get; set; }
         public IClient awayClient { get; set; }
@@ -18,6 +20,24 @@ namespace SpikeBowl.Engine
         public Team awayTeam { get; set; }
 
         public Ball ball { get; set; }
+
+        public Engine()
+        {
+            actionQueue = new Queue<IAction>();
+        }
+
+        public ActionResults ProcessActionQueue()
+        {
+            ActionResults result = ActionResults.OK_CONTINUE;
+
+            while ( result == ActionResults.OK_CONTINUE && actionQueue.Count > 0 )
+            {
+                IAction action = actionQueue.Dequeue();
+                action.TryAction();
+            }
+
+            return result;
+        }
 
         public List<Player> GetOpposingPlayersWithTackleZoneOnPoint(Point p, Side side)
         {

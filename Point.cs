@@ -8,6 +8,13 @@ namespace SpikeBowl.Engine
 {
     public class Point
     {
+
+        public Point(int v1, int v2)
+        {
+            x = v1;
+            y = v2;
+        }
+
         public int x { get; set; }
         public int y { get; set; }
 
@@ -15,5 +22,7 @@ namespace SpikeBowl.Engine
         {
             return ((p.x - x) * (p.x - x)) + ((p.y - y) * (p.y - y));
         }
+
+        
     }
 }

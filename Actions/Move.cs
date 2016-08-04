@@ -7,34 +7,59 @@ using SpikeBowl.Engine.Interfaces;
 
 namespace SpikeBowl.Engine.Actions
 {
-    class Move : IAction
+    public class Move : IAction
     {
         public ActionResults actionResult { get; set; }
 
         Player player;
         Point destination;
+        Engine engine;
 
-        public Move(Player player, Point destination)
+        public Move(Player player, Point destination, Engine engine)
         {
             this.player = player;
             this.destination = destination;
+            this.engine = engine;
         }
 
         public ActionResults TryAction()
         {
-            var opponentsWithTackleZoneOnPlayer = GameManager.engine.GetOpposingPlayersWithTackleZoneOnPoint(player.boardPosition, player.side);
-            var opponentsWithTackleZoneOnDestination = GameManager.engine.GetOpposingPlayersWithTackleZoneOnPoint(destination, player.side);
+            var opponentsWithTackleZoneOnPlayer = engine.GetOpposingPlayersWithTackleZoneOnPoint(player.boardPosition, player.side);
+            var opponentsWithTackleZoneOnDestination = engine.GetOpposingPlayersWithTackleZoneOnPoint(destination, player.side);
 
             ActionResults result;
 
-            if (opponentsWithTackleZoneOnPlayer.Count == 0)
+            if (player.movesRemaining == 0)
             {
+                //TODO - move all this into it's ownmethod that includes reroll check
+                //using a GFI
+                int dr = engine.diceManager.RollDice(RollTypes.D6).total;
+
+                //TODO - check for weather
+                int target = 2;
+                if (dr < target)
+                {
+                    //GFI failed
+                    //TODO - call method to knock down player, including armour/injury rolls
+                    player.boardPosition = destination;
+                    player.status = PlayerStatus.KNOCKED_DOWN;
+                    result = ActionResults.TURNOVER;
+                    return result;
+                }
+            }
+
+            if (opponentsWithTackleZoneOnPlayer.Count == 0)
+            {   
                 //no tackle zones on player so move automatically succeeds
+                player.boardPosition = destination;
+                
 
-                //TODO - change this to take into account GFIs
+                if (player.movesRemaining > 0)
+                    player.movesRemaining--;
+                else
+                    player.GFIsRemaining--;
 
-                player.movesRemaining--;
-                if (player.movesRemaining == 0)
+                if (player.movesRemaining + player.GFIsRemaining == 0)
                     result = ActionResults.OK_STOP;
                 else
                     result = ActionResults.OK_CONTINUE;

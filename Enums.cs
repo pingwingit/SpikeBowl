@@ -54,6 +54,7 @@ namespace SpikeBowl.Engine
     {
         D6,
         _2D6,
+        _3D6,
         D3,
         D8,
         D16,

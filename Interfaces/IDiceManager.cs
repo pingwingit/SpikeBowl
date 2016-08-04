@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpikeBowl.Engine
 {
-    interface IDiceManager
+    public interface IDiceManager
     {
         DiceResult RollDice(RollTypes rollType);
     }

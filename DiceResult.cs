@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpikeBowl.Engine
 {
-    class DiceResult
+    public class DiceResult
     {
         public int total;
         public List<int> individualResults;

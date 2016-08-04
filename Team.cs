@@ -17,5 +17,10 @@ namespace SpikeBowl.Engine
         public int RerollsRemainingThisHalf { get; set; }
 
         public List<Player> players { get; set; }
+
+        public Team()
+        {
+            players = new List<Player>();
+        }
     }
 }
