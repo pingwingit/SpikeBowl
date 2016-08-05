@@ -46,6 +46,8 @@
     <Compile Include="DiceResult.cs" />
     <Compile Include="Engine.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Interfaces\IController.cs" />
+    <Compile Include="SkillSettings.cs" />
     <Compile Include="TestClasses\LoadedDiceManager.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="Interfaces\IDiceManager.cs" />
@@ -55,6 +57,10 @@
     <Compile Include="Point.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Team.cs" />
+    <Compile Include="TestClasses\TestController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

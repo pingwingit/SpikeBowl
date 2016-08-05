@@ -9,7 +9,7 @@ namespace SpikeBowlUnitTests
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void GFIFails()
         {
             Engine e = new Engine();
 
@@ -24,7 +24,7 @@ namespace SpikeBowlUnitTests
             h1.status = PlayerStatus.STANDING;
             h1.boardPosition = new Point(2, 2);
 
-            e.homeTeam.players.Add(h1);
+            e.homeTeam.AddPlayer(h1);
             e.InitialiseTurn(e.homeTeam);
 
             e.actionQueue.Enqueue(new Move(h1, new Point(3, 2), e));
@@ -36,5 +36,9 @@ namespace SpikeBowlUnitTests
             Assert.AreEqual(ActionResults.TURNOVER, ar);
             Assert.AreEqual(4,h1.boardPosition.x);
         }
+
+        //CannotUseSprintTwiceInSameTurn
+
+        
     }
 }

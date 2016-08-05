@@ -22,6 +22,34 @@ namespace SpikeBowl.Engine.Actions
             this.engine = engine;
         }
 
+        private ActionResults GFI()
+        {
+            //using a GFI
+            int dr = engine.diceManager.RollDice(RollTypes.D6).total;
+
+            //TODO - check for weather
+            int target = 2;
+
+            if (dr < target)
+            {
+                if (engine.RequestReroll(player.team, RerollRequestMessages.GFI_FAILED, "GFI Failed, reroll?"))
+                {
+                    dr = engine.diceManager.RollDice(RollTypes.D6).total;
+                }
+            }
+
+            if (dr < target)
+            {
+                //GFI failed
+                //TODO - call method to knock down player, including armour/injury rolls
+                player.boardPosition = destination;
+                player.status = PlayerStatus.KNOCKED_DOWN;
+                return ActionResults.TURNOVER;
+            }
+
+            return ActionResults.OK_CONTINUE;
+        }
+
         public ActionResults TryAction()
         {
             var opponentsWithTackleZoneOnPlayer = engine.GetOpposingPlayersWithTackleZoneOnPoint(player.boardPosition, player.side);
@@ -31,20 +59,9 @@ namespace SpikeBowl.Engine.Actions
 
             if (player.movesRemaining == 0)
             {
-                //TODO - move all this into it's ownmethod that includes reroll check
-                //using a GFI
-                int dr = engine.diceManager.RollDice(RollTypes.D6).total;
-
-                //TODO - check for weather
-                int target = 2;
-                if (dr < target)
+                if ( GFI() == ActionResults.TURNOVER)
                 {
-                    //GFI failed
-                    //TODO - call method to knock down player, including armour/injury rolls
-                    player.boardPosition = destination;
-                    player.status = PlayerStatus.KNOCKED_DOWN;
-                    result = ActionResults.TURNOVER;
-                    return result;
+                    return ActionResults.TURNOVER;
                 }
             }
 
@@ -77,7 +94,6 @@ namespace SpikeBowl.Engine.Actions
                 result = ActionResults.TURNOVER;
             }
 
-            actionResult = result;
             return result;            
         }
 

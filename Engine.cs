@@ -13,8 +13,9 @@ namespace SpikeBowl.Engine
 
         public IDiceManager diceManager { get; set; }
 
-        public IClient homeClient { get; set; }
-        public IClient awayClient { get; set; }
+        //engine shouldn't need to know about clients
+        //public IClient homeClient { get; set; }
+        //public IClient awayClient { get; set; }
 
         public Team homeTeam { get; set; }
         public Team awayTeam { get; set; }
@@ -24,6 +25,18 @@ namespace SpikeBowl.Engine
         public Engine()
         {
             actionQueue = new Queue<IAction>();
+        }
+
+        public bool RequestReroll(Team activeTeam, RerollRequestMessages message, string moreInfo)
+        {
+            //check to see if there are any team/leader rerolls available
+            //check for Pro reroll
+
+            //TODO - send message to controller and wait for answer
+
+            //attempt pro/loner rolls if necessary
+            //reroll...
+            return true;
         }
 
         public ActionResults ProcessActionQueue()

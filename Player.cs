@@ -40,6 +40,10 @@ namespace SpikeBowl.Engine
 
         public bool isReallyStupid { get; set; }
         public bool isBoneHeaded { get; set; }
+        
+        public Team team { get; set; }
+
+        public Dictionary<Skills,SkillSettings> skills { get; set; }
 
         public bool hasTackleZone
         {            
@@ -52,7 +56,42 @@ namespace SpikeBowl.Engine
             }            
         }
 
+        //TODO - make these return some sort of AmourBreakOrInjuryResult object
+        private void BreakArmour()
+        {
 
+        }
+
+        private void Injure()
+        {
+
+        }
+
+        public bool IsUsingSkill(Skills s)
+        {
+            bool result = false;
+
+            if ( skills.ContainsKey(s) )
+            {
+                SkillSettings ss = skills[s];
+                if ( ss.limitedUse && ss.usesRemaining == 0)
+                {
+                    //already used skill
+                    result = false;
+                }
+                else if (ss.autoUse || ss.mandatory)
+                {
+                    if (ss.limitedUse)
+                        ss.usesRemaining--;
+
+                    result = true;
+                }
+                else
+                    result = false;//TODO - ask if skill should be used
+            }
+
+            return result;
+        }
 
         public Player()
         {

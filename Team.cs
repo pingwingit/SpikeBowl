@@ -22,5 +22,11 @@ namespace SpikeBowl.Engine
         {
             players = new List<Player>();
         }
+
+        public void AddPlayer(Player p)
+        {
+            players.Add(p);
+            p.team = this;
+        }
     }
 }

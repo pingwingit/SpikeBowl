@@ -47,7 +47,11 @@ namespace SpikeBowl.Engine
         PASS_INACCURATE,
         PASS_FUMBLED,
         CATCH_FAILED,
-        PICKUP_FAILED
+        PICKUP_FAILED,
+        GFI_FAILED
+
+        //TODO - should tentacles and shadowing be here (could use these in own turn on pass block opponent)
+        //possible Pro might allow rerolls for these too
     }
 
     public enum RollTypes
@@ -59,5 +63,10 @@ namespace SpikeBowl.Engine
         D8,
         D16,
         D68
+    }
+
+    public enum Skills
+    {
+
     }
 }
